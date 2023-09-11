@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Xml File Upload</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<!--<link rel="stylesheet" th:href="@{/css/style.css}" />-->
+</head>
+
+<body>
+	<h1>XML Data</h1>
+	<!-- Add a search form -->
+	<form th:action="@{/search}" method="get">
+		<label for="searchInput">Search C Number:</label>
+		<input type="text" id="searchInput" name="cNumber">
+		<!--<button type="submit">Search</button>-->
+		<label for="replacementInput">Replacement Number:</label>
+		<input type="text" id="replacementInput" name="replacementNumber">
+		<button type="submit">Replace</button>
+	</form>
+	
+	<a type="button" class="btn btn-info" href="/Flowset">Create Flow setup</a>
+	<table>
+		<thead class="thead-dark">
+			<tr>
+				<th>C Number :-</th>
+			</tr>
+		</thead>
+		<tr th:each="data : ${modifiedContent}">
+			<td th:text="${data}"></td>
+		</tr>
+	</table>
+
+
+
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,14 @@
+body{
+	background:url(../images/background.jpg);
+	background-color:rgb(255, 255, 255);
+	background-size:cover;
+}
+
+table{
+	border:1px;
+}
+
+.td{
+	width:auto;
+	height: auto;
+}

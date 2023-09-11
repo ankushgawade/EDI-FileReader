@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>File Upload</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	<h1 style="color:rgb(255, 255, 255)" align="center">File Uploader</h1>
+
+
+	<!--EDi file section-->
+	<div class="box">
+		<div class="services">
+
+			<h1>EDI File Upload</h1>
+			<form method="POST" enctype="multipart/form-data" action="/ediupload">
+				<input type="file" name="file">
+				<button type="submit" class="btn btn-primary">Upload</button>
+				
+				<p class="message" th:if="${messageEDI} != null" th:text="${messageEDI}"></p>
+				<p th:unless="${isEDIFile}" class="error-message" th:text="${messageEDIerror}" >Please upload an EDI file.</p>
+
+				<h6 th:if="${messageEDI} != null">EDI file Content:</h6>
+				<ul>
+					<li th:each="value : ${content1}" th:text="${value}">
+					</li>
+				</ul>
+				
+				<a type="button" class="btn btn-info" th:if="${messageEDI} != null" href="/">Upload another file</a>
+			</form>
+			
+			<a href="/showData" target="_blank">View Table Data</a>
+		</div>
+	</div>
+
+
+
+
+	<!--Flat file section-->
+	<div class="box1">
+		<div class="services">
+
+			<h1>Flat File Upload</h1>
+			<form method="POST" enctype="multipart/form-data" action="/upload">
+				<input type="file" name="file">
+				<button type="submit" class="btn btn-primary">Upload</button>
+
+				<p class="message" th:if="${messageFlat} != null" th:text="${messageFlat}"></p>
+				<p th:unless="${isFlatFile}" class="error-message" th:text="${messageFlaterror}">Please upload a flat file.</p>
+
+				<h6 th:if="${messageFlat} != null">Flat file Content:</h6>
+				<ul>
+					<li th:each="value : ${content}" th:text="${value}"></li>
+				</ul>
+
+				<a type="button" class="btn btn-info" th:if="${messageFlat} != null" href="/">Upload another file</a>
+				
+			
+			</form>
+				<a href="/showFlatData" target="_blank">View Table Data</a>
+		</div>
+	</div>
+
+
+
+</body>
+
+</html>

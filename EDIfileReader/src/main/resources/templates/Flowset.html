@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Flow Set Up</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+
+<body>
+
+	<div class="box">
+		<div class="services">
+
+			<h1 style="color:rgb(0, 0, 0)" align="center">Flow SetUp</h1>
+
+			<form action="">
+				<label for="direction">Choose Direction:</label>
+
+				<select name="direction" id="direction">
+					<option value="Inbound">Inbound</option>
+					<option value="Outbound">Outbound</option>
+
+				</select>
+
+
+				<label for="application">Choose Application:</label>
+
+				<select name="application" id="application">
+					<option value=""></option>
+					<option value="NAV">NAV</option>
+					<option value="POM">POM</option>
+				</select>
+
+				<label for="transtype">Choose Transaction Type:</label>
+
+				<select name="transtype" id="transtype">
+					<option value="EDI">EDI</option>
+					<option value="NONEDI">NONEDI</option>
+
+				</select>
+
+               
+				<label for="searchInput">Enter C Number:</label>
+				<input type="text" id="searchInput" name="cNumber">
+				 <br>
+				<!--<label for="senderId">Enter SenderId:</label>
+				<input type="text" id="senderId" name="senderId">-->
+				
+				
+                
+                <label for="businessProcess">Choose Business Process:</label>
+                <select name="businessProcess" id="businessProcess">
+					<option value="CHR_MB_EXTRACT_IB_EDI">CHR_MB_EXTRACT_IB_EDI</option>
+					<option value="CHR_MB_EXTRACT_IB_NONEDI">CHR_MB_EXTRACT_IB_NONEDI</option>
+					<option value="CHR_MB_EXTRACT_OB_NONEDI">CHR_MB_EXTRACT_OB_NONEDI</option>
+					<option value="CHR_MB_EXTRACT_GEN_CBR ">CHR_MB_EXTRACT_GEN_CBR </option>  
+					<option value="CHR_MB_EXTRACT_GEN_FILEINTERFACE_EXTRACT_MBPATH">
+					               CHR_MB_EXTRACT_GEN_FILEINTERFACE_EXTRACT_MBPATH</option>
+					<option value="CHR_MB_EXTRACT_OB_NONEDI_TO_EDI">
+					               CHR_MB_EXTRACT_OB_NONEDI_TO_EDI</option>               
+
+				</select> 
+
+
+			</form>
+
+			<br>
+			<br>
+			<button type="submit" class="btn btn-primary" onclick="displayContent()">Create Mailbox</button>
+
+			<div id="contentDisplay"></div>
+
+		</div>
+	</div>
+
+	<script>
+		function displayContent() {
+			var transtype = document.getElementById("transtype").value;
+			var application = document.getElementById("application").value;
+			var direction = document.getElementById("direction").value;
+			var cNumber = document.getElementById("searchInput").value;
+			var senderId = document.getElementById("senderId").value;
+			var businessProcess=document.getElementById("businessProcess").value;
+			var contentDisplay = document.getElementById("contentDisplay");
+
+			var mailboxContent, mailboxContent2;
+			var routingRuleContent,routingRuleContent2;
+
+			if (application == null || application === "") {
+				mailboxContent = "MailBox:- " + "/" + direction + "/" + transtype + "/" + cNumber;
+				routingRuleContent = "Routing Rule:- " + direction + "_" + transtype + "_" + cNumber;
+			} else {
+				mailboxContent = "MailBox:- " + "/" + direction + "/" + transtype + "/" + cNumber;
+				mailboxContent2 = "MailBox:- " + "/" + direction + "/" + application + "/" + cNumber;
+				routingRuleContent = "Routing Rule:- " + direction + "_" + transtype + "_" + cNumber;
+				routingRuleContent2 = "Routing Rule:- " + direction + "_" + application + "_" + cNumber;
+			}
+
+		 //routingRuleContent = "Routing Rule:- " + direction + "_" + transtype + "_" + cNumber;
+			var businessProcess = "Business process:- "+businessProcess;
+
+			contentDisplay.innerHTML = mailboxContent + "<br>" + routingRuleContent + "<br>"+ businessProcess;
+
+			if (mailboxContent2) {
+				contentDisplay.innerHTML += "<br>" + mailboxContent2+"<br>"+ routingRuleContent2;
+			}
+		}
+	</script>
+
+
+
+
+
+</body>
+
+</html>
