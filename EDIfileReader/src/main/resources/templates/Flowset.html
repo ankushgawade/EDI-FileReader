@@ -9,7 +9,8 @@
 		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 	<link rel="stylesheet" th:href="@{/css/style.css}" />
-
+	<script src="../js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
 </head>
 
 <body>
@@ -29,19 +30,20 @@
 				</select>
 
 
-				<label for="application">Choose Application:</label>
+				<!--<label for="application">Choose Application:</label>
 
 				<select name="application" id="application">
 					<option value=""></option>
 					<option value="NAV">NAV</option>
 					<option value="POM">POM</option>
-				</select>
+				</select>-->
 
 				<label for="transtype">Choose Transaction Type:</label>
 
 				<select name="transtype" id="transtype">
-					<option value="EDI">EDI</option>
+					
 					<option value="NONEDI">NONEDI</option>
+					<option value="EDI">EDI</option>
 
 				</select>
 
@@ -56,6 +58,7 @@
                 
                 <label for="businessProcess">Choose Business Process:</label>
                 <select name="businessProcess" id="businessProcess">
+                <option value=""></option>
 					<option value="CHR_MB_EXTRACT_IB_EDI">CHR_MB_EXTRACT_IB_EDI</option>
 					<option value="CHR_MB_EXTRACT_IB_NONEDI">CHR_MB_EXTRACT_IB_NONEDI</option>
 					<option value="CHR_MB_EXTRACT_OB_NONEDI">CHR_MB_EXTRACT_OB_NONEDI</option>
@@ -66,8 +69,30 @@
 					               CHR_MB_EXTRACT_OB_NONEDI_TO_EDI</option>               
 
 				</select> 
+				<br>
+				<label for="application">Choose Application:</label>
 
+				<select name="application" id="application">
+					<option value=""></option>
+					<option value="NAV">NAV</option>
+					<option value="POM">POM</option>
+					<option value="POM">OESI</option>
+				</select>
 
+				<label for="businessProcess2">Choose Business Process:</label>
+                <select name="businessProcess2" id="businessProcess2">
+                	<option value=""></option>
+					<option value="CHR_MB_EXTRACT_IB_EDI">CHR_MB_EXTRACT_IB_EDI</option>
+					<option value="CHR_MB_EXTRACT_IB_NONEDI">CHR_MB_EXTRACT_IB_NONEDI</option>
+					<option value="CHR_MB_EXTRACT_OB_NONEDI">CHR_MB_EXTRACT_OB_NONEDI</option>
+					<option value="CHR_MB_EXTRACT_GEN_CBR ">CHR_MB_EXTRACT_GEN_CBR </option>  
+					<option value="CHR_MB_EXTRACT_GEN_FILEINTERFACE_EXTRACT_MBPATH">
+					               CHR_MB_EXTRACT_GEN_FILEINTERFACE_EXTRACT_MBPATH</option>
+					<option value="CHR_MB_EXTRACT_OB_NONEDI_TO_EDI">
+					               CHR_MB_EXTRACT_OB_NONEDI_TO_EDI</option>               
+
+				</select> 
+				
 			</form>
 
 			<br>
@@ -79,7 +104,7 @@
 		</div>
 	</div>
 
-	<script>
+	<!--<script>
 		function displayContent() {
 			var transtype = document.getElementById("transtype").value;
 			var application = document.getElementById("application").value;
@@ -87,12 +112,15 @@
 			var cNumber = document.getElementById("searchInput").value;
 			var senderId = document.getElementById("senderId").value;
 			var businessProcess=document.getElementById("businessProcess").value;
+			
 			var contentDisplay = document.getElementById("contentDisplay");
 
 			var mailboxContent, mailboxContent2;
 			var routingRuleContent,routingRuleContent2;
+			var businessProcess = "Business process:- "+businessProcess;
+		
 
-			if (application == null || application === "") {
+			if (application == null || application ==="") {
 				mailboxContent = "MailBox:- " + "/" + direction + "/" + transtype + "/" + cNumber;
 				routingRuleContent = "Routing Rule:- " + direction + "_" + transtype + "_" + cNumber;
 			} else {
@@ -103,7 +131,7 @@
 			}
 
 		 //routingRuleContent = "Routing Rule:- " + direction + "_" + transtype + "_" + cNumber;
-			var businessProcess = "Business process:- "+businessProcess;
+			
 
 			contentDisplay.innerHTML = mailboxContent + "<br>" + routingRuleContent + "<br>"+ businessProcess;
 
@@ -111,9 +139,10 @@
 				contentDisplay.innerHTML += "<br>" + mailboxContent2+"<br>"+ routingRuleContent2;
 			}
 		}
-	</script>
+	</script>-->
 
 
+<button type="button" class="btn btn-primary" onclick="saveDataToFile()">Save Data to File</button>
 
 
 

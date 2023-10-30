@@ -72,6 +72,11 @@ public class FileUploadController {
                             String value = textContent.replace("/Outbound/NONEDI/", "");
                             contentList.add(value);
                         }
+                        if (textContent.contains("Outbound_NONEDI_")) {
+                            String value = textContent.replace("Outbound_NONEDI_", "");
+                            contentList.add(value);
+                        }	
+                        
 
                     }
                 }
